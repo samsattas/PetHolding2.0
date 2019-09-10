@@ -1,13 +1,12 @@
 package model;
 
 public class Pet {
-	//RELATIONS
-	private Date bDate;
 	
 	//ATTRIBUTES
 	private int id;
 	private String name;
-	private char gender;
+	private String bDate;
+	private String gender;
 	private String type;
 	
 	//CONSTRUCTOR
@@ -18,7 +17,7 @@ public class Pet {
 	 * @param gender
 	 * @param type
 	 */
-	public Pet( int id, String name, Date bDate, char gender, String type) {
+	public Pet( int id, String name, String bDate, String gender, String type) {
 		super();
 		this.bDate = bDate;
 		this.id = id;
@@ -31,14 +30,14 @@ public class Pet {
 	/**
 	 * @return the bDate
 	 */
-	public Date getbDate() {
+	public String getbDate() {
 		return bDate;
 	}
 
 	/**
 	 * @param bDate the bDate to set
 	 */
-	public void setbDate(Date bDate) {
+	public void setbDate(String bDate) {
 		this.bDate = bDate;
 	}
 
@@ -73,14 +72,14 @@ public class Pet {
 	/**
 	 * @return the gender
 	 */
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
 	/**
 	 * @param gender the gender to set
 	 */
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

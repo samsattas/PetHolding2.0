@@ -1,15 +1,15 @@
 package model;
 import java.util.ArrayList;
+import exceptions.*;
 
 public class Club {
 	//RELATION
 	ArrayList<Client> clients = new ArrayList<Client>();
-	private Date creationDate;
-	
 	
 	//ATTRIBUTES
 	private int id;
 	private String name;
+	private String creationDate;
 	private String petType;
 	
 	//CONSTRUCTOR
@@ -20,8 +20,8 @@ public class Club {
 	 * @param name
 	 * @param petType
 	 */
-	public Club(ArrayList<Client> clients, Date creationDate, int id, String name, String petType) {
-		this.clients = clients;
+	public Club(  int id, String name,String creationDate, String petType) {
+		
 		this.creationDate = creationDate;
 		this.id = id;
 		this.name = name;
@@ -37,11 +37,11 @@ public class Club {
 		this.clients = clients;
 	}
 
-	public Date getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 
@@ -69,5 +69,59 @@ public class Club {
 		this.petType = petType;
 	}
 	
+	public void arrange() {
+		
+	}
+	
+	public void addClient (Client client) throws RepeatedException{
+		boolean rep = false;
+		for(int i = 0; i<clients.size();i++) {
+			if(clients.get(i).getId() == client.getId()) {
+				rep = true;
+			}
+		}
+		
+		if(rep == false) {
+			clients.add(client);
+		}else {
+			throw new RepeatedException();
+		}
+	}
+	
+	public Client secuencialIdSearch(int cid) {
+		Client client = null;
+		boolean found = false;
+		
+		for(int i =0; i < clients.size()-1 && found == false;i++) {
+			if(clients.get(i).getId() == cid) {
+				client = clients.get(i);
+				found = true;
+			}
+		}
+		
+		return client;
+	}
+	
+	public Client secuencialNameSearch(String cid) {
+		Client client = null;
+		boolean found = false;
+		
+		for(int i =0; i < clients.size()-1 && found == false;i++) {
+			if(clients.get(i).getName().equals(cid)) {
+				client = clients.get(i);
+				found = true;
+			}
+		}
+		
+		return client;
+	}
+	
+	public void deleteById(int cid) {
+		clients.remove(secuencialIdSearch(cid));
+	}
+	
+	public void deleteByName(String cid) {
+		clients.remove(secuencialNameSearch(cid));
+	}
 	
 }

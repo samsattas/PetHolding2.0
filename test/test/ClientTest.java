@@ -12,19 +12,19 @@ class ClientTest {
 	
 	Client client;
 	
-	@Test
+	
 	void setupEscenario0() {
-		Date bDate = new Date(26,7,2000);
-		client = new Client (1006248539, "samuel", "satizabal", bDate, "Gato");
+		
+		client = new Client (1006248539, "samuel", "satizabal", "26/07/2000", "Gato");
 	}
 	
 	
 	void setupEscenario1() {
-		Date bDate = new Date(26,7,2000);
-		client = new Client (1006248539, "samuel", "satizabal", bDate, "Gato");
 		
-		Date petDate = new Date(23, 9, 2001);
-		Pet pet = new Pet(10098, "Tom", petDate, 'M', "Gato");
+		client = new Client (1006248539, "samuel", "satizabal", "26/07/2000", "Gato");
+		
+		
+		Pet pet = new Pet(10098, "Tom", "08/08/2010", "Masculino", "Gato");
 		client.addPet(pet);
 		
 		
@@ -33,17 +33,27 @@ class ClientTest {
 	@Test
 	void testAddPet() {
 		setupEscenario0();
-		Date petDate = new Date(23, 9, 2001);
-		Pet pet = new Pet(10098, "Tom", petDate, 'M', "Gato");
+		Pet pet = new Pet(10098, "Tom", "08/08/2010", "Masculino", "Gato");
 		client.addPet(pet);
+		
 	}
 	
 	@Test
-	void testDeletePet() {
+	void testDeletePetById() {
 		setupEscenario1();
 		ArrayList<Pet> pets2 = new ArrayList<Pet>();
 		
 		client.deletePetById(10098);
+		assertEquals(client.getPets().size(), pets2.size());
+		
+	}
+	
+	@Test
+	void testDeletePetByName() {
+		setupEscenario1();
+		ArrayList<Pet> pets2 = new ArrayList<Pet>();
+		
+		client.deletePetByName("Tom");
 		assertEquals(client.getPets().size(), pets2.size());
 		
 	}

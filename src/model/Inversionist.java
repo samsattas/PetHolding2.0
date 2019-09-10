@@ -9,13 +9,33 @@ public class Inversionist {
 	/**
 	 * @param clubs
 	 */
-	public Inversionist(ArrayList<Club> clubs) {
+	public Inversionist() {
 		super();
-		this.clubs = clubs;
+		
 	}
 	
-	public void addClub() {
-		
+	
+	
+	/**
+	 * @return the clubs
+	 */
+	public ArrayList<Club> getClubs() {
+		return clubs;
+	}
+
+
+
+	/**
+	 * @param clubs the clubs to set
+	 */
+	public void setClubs(ArrayList<Club> clubs) {
+		this.clubs = clubs;
+	}
+
+
+
+	public void addClub(Club club) {
+		clubs.add(club);
 	}
 	
 	public void deleteClubById(int id) {

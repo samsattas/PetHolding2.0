@@ -10,7 +10,7 @@ public class Client implements Serializable{
 	private int id;
 	private String name;
 	private String lastName;
-	private Date bDate;
+	private String bDate;
 	private String preferredPetType;
 	
 	//CONSTRUCTOR
@@ -22,7 +22,7 @@ public class Client implements Serializable{
 	 * @param bDate
 	 * @param preferredPetType
 	 */
-	public Client(int id, String name, String lastName, Date bDate, String preferredPetType) {
+	public Client(int id, String name, String lastName, String bDate, String preferredPetType) {
 		super();
 		
 		this.id = id;
@@ -91,14 +91,14 @@ public class Client implements Serializable{
 	/**
 	 * @return the bDate
 	 */
-	public Date getbDate() {
+	public String getbDate() {
 		return bDate;
 	}
 
 	/**
 	 * @param bDate the bDate to set
 	 */
-	public void setbDate(Date bDate) {
+	public void setbDate(String bDate) {
 		this.bDate = bDate;
 	}
 
@@ -120,10 +120,25 @@ public class Client implements Serializable{
 		pets.add(pet);
 	}
 	
-	public void ordenamientoB() {
+	public void arrangeById() {
 		
 	}
 	
+	public void arrangeByName() {
+			
+	}
+	
+	public void arrangeByBDate() {
+		
+	}
+	
+	public void arrangeByGender() {
+		
+	}
+	
+	public void arrangeByType() {
+		
+	}
 	
 	/**
 	 * @param a
@@ -178,13 +193,21 @@ public class Client implements Serializable{
 	}
 	
 	public void deletePetById(int pid) {
-		ordenamientoB();
+		arrangeById();
 		try {
 			pets.remove(binaryId(pets, pid));
-		}catch(Exception e) {
+		}catch(NullPointerException e) {
 			System.out.println("ERROR: la mascota ingresada no existe");
 		}
 		
+	}
+	
+	public void deletePetByName(String pname) {
+		try {
+			pets.remove(binaryName(pets, pname));
+		}catch(NullPointerException e) {
+			System.out.println("ERROR: la mascota ingresada no existe");
+		}
 	}
 	
 }
