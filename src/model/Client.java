@@ -2,6 +2,9 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import exceptions.RepeatedException;
+import exceptions.RepeatedPetException;
+
 public class Client implements Serializable{
 	//RELATION
 	ArrayList<Pet> pets = new ArrayList<Pet>();
@@ -116,28 +119,86 @@ public class Client implements Serializable{
 		this.preferredPetType = preferredPetType;
 	}
 	
-	public void addPet(Pet pet) {
-		pets.add(pet);
+	public void addPet(Pet pet) throws RepeatedPetException{
+		boolean rep = false;
+		for(int i = 0; i<pets.size();i++) {
+			if(pets.get(i).getName().equals(pet.getName())) {
+				rep = true;
+			}
+		}
+		
+		if(rep == false) {
+			pets.add(pet);
+		}else {
+			throw new RepeatedPetException();
+		}
 	}
 	
 	public void arrangeById() {
-		
+		Pet auxPet;
+		for(int i = 0;i<pets.size();i++) {			
+			for(int j = i+1; j<pets.size();j++) {				
+				if(pets.get(j).getId()<pets.get(i).getId()) {
+					auxPet = pets.get(i);
+					pets.set(i, pets.get(j));
+					pets.set(j, auxPet);
+				}
+			}
+		}
 	}
 	
+	
+	
 	public void arrangeByName() {
-			
+		Pet auxPet;
+		for(int i = 0;i<pets.size();i++) {			
+			for(int j = i+1; j<pets.size();j++) {				
+				if(pets.get(j).getName().compareTo(pets.get(i).getName())<0) {
+					auxPet = pets.get(i);
+					pets.set(i, pets.get(j));
+					pets.set(j, auxPet);
+				}
+			}
+		}
 	}
 	
 	public void arrangeByBDate() {
-		
+		Pet auxPet;
+		for(int i = 0;i<pets.size();i++) {			
+			for(int j = i+1; j<pets.size();j++) {				
+				if(pets.get(j).getbDate().compareTo(pets.get(i).getbDate())<0) {
+					auxPet = pets.get(i);
+					pets.set(i, pets.get(j));
+					pets.set(j, auxPet);
+				}
+			}
+		}
 	}
 	
 	public void arrangeByGender() {
-		
+		Pet auxPet;
+		for(int i = 0;i<pets.size();i++) {			
+			for(int j = i+1; j<pets.size();j++) {				
+				if(pets.get(j).getGender().compareTo(pets.get(i).getGender())<0) {
+					auxPet = pets.get(i);
+					pets.set(i, pets.get(j));
+					pets.set(j, auxPet);
+				}
+			}
+		}
 	}
 	
 	public void arrangeByType() {
-		
+		Pet auxPet;
+		for(int i = 0;i<pets.size();i++) {			
+			for(int j = i+1; j<pets.size();j++) {				
+				if(pets.get(j).getType().compareTo(pets.get(i).getType())<0) {
+					auxPet = pets.get(i);
+					pets.set(i, pets.get(j));
+					pets.set(j, auxPet);
+				}
+			}
+		}
 	}
 	
 	/**
@@ -146,6 +207,7 @@ public class Client implements Serializable{
 	 * @return
 	 */
 	public Pet binaryId(ArrayList<Pet> a, int find) {
+		arrangeById();
 		Pet found = null;
 		boolean aux = false;
 		int start = 0;
@@ -172,6 +234,7 @@ public class Client implements Serializable{
 	 * @return
 	 */
 	public Pet binaryName(ArrayList<Pet> a, String find) {
+		arrangeByName();
 		Pet found = null;
 		boolean aux = false;
 		int start = 0;

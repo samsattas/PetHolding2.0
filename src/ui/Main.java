@@ -3,6 +3,7 @@ package ui;
 import java.util.Scanner;
 
 import exceptions.RepeatedException;
+import exceptions.RepeatedPetException;
 import model.*;
 
 public class Main {
@@ -106,7 +107,12 @@ public class Main {
 														
 														Pet auxPet = new Pet(id, name, bDate, gender, type);
 																										
-														inv.getClubs().get(i).getClients().get(j).addPet(auxPet);
+														try {
+															inv.getClubs().get(i).getClients().get(j).addPet(auxPet);
+														} catch (RepeatedPetException e) {
+															// TODO Auto-generated catch block
+															e.printStackTrace();
+														}
 													}
 												}
 		

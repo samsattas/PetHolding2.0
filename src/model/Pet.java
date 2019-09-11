@@ -1,6 +1,8 @@
 package model;
 
-public class Pet {
+import java.io.Serializable;
+
+public class Pet implements Serializable{
 	
 	//ATTRIBUTES
 	private int id;

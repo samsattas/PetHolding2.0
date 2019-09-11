@@ -69,9 +69,58 @@ public class Club {
 		this.petType = petType;
 	}
 	
-	public void arrange() {
-		
+	public void arrangeById() {		
+		for (int i = clients.size(); i > 0; i-- ) {
+			for (int j=0; j<i-1; j++) {
+				if (clients.get(j).getId() > clients.get(j+1).getId() ) {
+					Client tmp=clients.get(j);
+					clients.set(j, clients.get(j+1));
+					clients.set(j+1, tmp);					
+				}
+			}
+		}		
 	}
+	
+	
+	
+	public void arrangeByName() {
+		for (int i = clients.size(); i > 0; i-- ) {
+			for (int j=0; j<i-1; j++) {
+				if (clients.get(j).getName().compareTo(clients.get(j+1).getName()) >=  1) {
+					Client tmp=clients.get(j);
+					clients.set(j, clients.get(j+1));
+					clients.set(j+1, tmp);					
+				}
+			}
+		}	
+	}
+
+	public void arrangeByLastName() {
+		for (int i = clients.size(); i > 0; i-- ) {
+			for (int j=0; j<i-1; j++) {
+				if (clients.get(j).getLastName().compareTo(clients.get(j+1).getLastName()) >=  1) {
+					Client tmp=clients.get(j);
+					clients.set(j, clients.get(j+1));
+					clients.set(j+1, tmp);					
+				}
+			}
+		}
+	}
+	
+	public void arrangeByPreferredPetType() {
+		for (int i = clients.size(); i > 0; i-- ) {
+			for (int j=0; j<i-1; j++) {
+				if (clients.get(j).getPreferredPetType().compareTo(clients.get(j+1).getPreferredPetType()) >=  1) {
+					Client tmp=clients.get(j);
+					clients.set(j, clients.get(j+1));
+					clients.set(j+1, tmp);					
+				}
+			}
+		}
+	}
+	
+	
+	
 	
 	public void addClient (Client client) throws RepeatedException{
 		boolean rep = false;
