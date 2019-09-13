@@ -48,6 +48,9 @@ class ClientTest {
 		Pet pet = new Pet(10098, "Tom", "08/08/2010", "Masculino", "Gato");
 		client.addPet(pet);
 		
+		assertTrue(client.getPets().size() == 1);
+		
+		
 	}
 	
 	@Test
@@ -101,6 +104,16 @@ class ClientTest {
 	}
 	
 	@Test
+	void testArrangeByType() throws RepeatedPetException {
+		setupEscenario2();
+		client.arrangeByType();
+		
+		assertTrue(client.getPets().get(0).getType().equals("Gato"));
+		assertTrue(client.getPets().get(1).getType().equals("Perro"));
+		assertTrue(client.getPets().get(2).getType().equals("Pez"));
+	}
+	
+	@Test
 	void testBinaryId() throws RepeatedPetException {
 		setupEscenario2();
 		client.arrangeById();
@@ -119,5 +132,5 @@ class ClientTest {
 		assertEquals(auxPet.getId(), 10098);
 		assertEquals(auxPet.getType(), "Gato");
 	}
-
+	
 }

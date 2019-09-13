@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+
 public class Pet implements Serializable{
 	
 	//ATTRIBUTES
@@ -98,6 +99,9 @@ public class Pet implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+
+	
 	
 	
 }

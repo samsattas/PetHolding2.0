@@ -272,5 +272,13 @@ public class Client implements Serializable{
 			System.out.println("ERROR: la mascota ingresada no existe");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + ", lastName=" + lastName + ", bDate=" + bDate
+				+ ", preferredPetType=" + preferredPetType + "]";
+	}
+	
+	
 	
 }
